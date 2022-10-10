@@ -12,7 +12,7 @@ const showDetail = (value = true) => {
 
 const detail = ref({
   id: null,
-  price: 0,
+  price: 1,
   name: "",
   size: "",
   notes: "",
@@ -21,7 +21,7 @@ const detail = ref({
 const addData = () => {
   detail.value = {
     id: null,
-    price: 0,
+    price: 1,
     name: "",
     size: "",
     notes: "",
@@ -29,7 +29,7 @@ const addData = () => {
   showDetail();
 };
 const editData = (data) => {
-  detail.value = data;
+  detail.value = {...data};
   showDetail();
 };
 
@@ -64,20 +64,20 @@ const deleteData = (id) => {
       <thead>
         <tr>
           <th width="1%"></th>
-          <th>name</th>
-          <th>price</th>
-          <th>size</th>
-          <th>notes</th>
+          <th>品項</th>
+          <th>價格</th>
+          <th>L/M/S</th>
+          <th>備註</th>
           <th width="160" class="text-center"></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in list" :key="item.id">
           <td v-text="index + 1" data-th=""></td>
-          <td v-text="item.name" data-th="name"></td>
-          <td v-text="item.price" data-th="price"></td>
-          <td v-text="item.size" data-th="size"></td>
-          <td v-text="item.notes" data-th="notes"></td>
+          <td v-text="item.name" data-th="品項"></td>
+          <td v-text="item.price" data-th="價格"></td>
+          <td v-text="item.size" data-th="L/M/S"></td>
+          <td v-text="item.notes" data-th="備註"></td>
           <td data-th="">
             <button class="btn btn-icon" title="編輯" @click="editData(item)">
               <i class="fa-solid fa-pen-to-square"></i>
@@ -104,7 +104,7 @@ const deleteData = (id) => {
         <div class="mb-4">
           <div class="row mb-2">
             <div class="col-auto">
-              <label for="edit-name" class="form-label">Name</label>
+              <label for="edit-name" class="form-label">品項</label>
             </div>
             <div class="col-md">
               <input
@@ -117,20 +117,21 @@ const deleteData = (id) => {
           </div>
           <div class="row mb-2">
             <div class="col-auto">
-              <label for="edit-price" class="form-label">Price</label>
+              <label for="edit-price" class="form-label">價格</label>
             </div>
             <div class="col-md">
               <input
                 id="edit-price"
                 type="number"
                 class="form-control"
+                min="0"
                 v-model="detail.price"
               />
             </div>
           </div>
           <div class="row mb-2">
             <div class="col-auto">
-              <label for="edit-size" class="form-label">Size</label>
+              <label for="edit-size" class="form-label">尺寸</label>
             </div>
             <div class="col-md">
               <select id="edit-size" class="form-control" v-model="detail.size">
@@ -143,7 +144,7 @@ const deleteData = (id) => {
           </div>
           <div class="row mb-2">
             <div class="col-auto">
-              <label for="edit-notes" class="form-label">Notes</label>
+              <label for="edit-notes" class="form-label">備註</label>
             </div>
             <div class="col-md">
               <textarea
