@@ -35,7 +35,7 @@
 		tbody {
 			td {
 				display: flex;
-				&::before {
+				&[data-th]::before {
 					content: attr(data-th);
 					display: block;
 					width: 80px;

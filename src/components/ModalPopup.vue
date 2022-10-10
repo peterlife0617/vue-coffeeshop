@@ -28,7 +28,6 @@ watch(
     const body = document.querySelector("body");
     let hasExistShow = false;
     [...document.querySelectorAll(".modal")].forEach((modal) => {
-      console.log(modal);
       if (modal.style.display === "none") {
         hasExistShow = true;
       }
@@ -52,7 +51,7 @@ watch(
       <button class="btn btn-icon btn-close" @click="hideModal">
         <i class="fa-solid fa-xmark"></i>
       </button>
-      <div class="modal-body"><slot></slot></div>
+      <div class="modal-body"><slot :hide-modal="hideModal"></slot></div>
       <div class="modal-footer">
         <slot name="footer" :hide-modal="hideModal"></slot>
       </div>
