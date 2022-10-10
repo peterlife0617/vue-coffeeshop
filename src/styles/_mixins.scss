@@ -1,0 +1,71 @@
+@mixin breakpoint-xl {
+	@media (min-width: $max-width-xl) {
+		@content;
+	}
+}
+@mixin breakpoint-lg {
+	@media (min-width: $max-width-lg) {
+		@content;
+	}
+}
+@mixin breakpoint-md {
+	@media (min-width: $max-width-md) {
+		@content;
+	}
+}
+@mixin breakpoint-sm {
+	@media (min-width: $max-width-sm) {
+		@content;
+	}
+}
+
+@mixin make-margin-space($key, $size) {
+	.ml-#{$key} {
+		margin-left: $size;
+	}
+	.mr-#{$key} {
+		margin-right: $size;
+	}
+	.mt-#{$key} {
+		margin-top: $size;
+	}
+	.mb-#{$key} {
+		margin-bottom: $size;
+	}
+	.mx-#{$key} {
+		margin-right: $size;
+		margin-left: $size;
+	}
+	.my-#{$key} {
+		margin-top: $size;
+		margin-bottom: $size;
+	}
+	.m-#{$key} {
+		margin: $size;
+	}
+}
+@mixin make-padding-space($key, $size) {
+	.pl-#{$key} {
+		padding-left: $size;
+	}
+	.pr-#{$key} {
+		padding-right: $size;
+	}
+	.pt-#{$key} {
+		padding-top: $size;
+	}
+	.pb-#{$key} {
+		padding-bottom: $size;
+	}
+	.px-#{$key} {
+		padding-right: $size;
+		padding-left: $size;
+	}
+	.py-#{$key} {
+		padding-top: $size;
+		padding-bottom: $size;
+	}
+	.p-#{$key} {
+		padding: $size;
+	}
+}

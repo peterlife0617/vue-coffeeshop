@@ -1,0 +1,32 @@
+.btn {
+	user-select: none;
+	display: inline-block;
+	user-select: none;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0.375rem 0.75rem;
+	background-color: transparent;
+	border: 1px solid transparent;
+	cursor: pointer;
+	font-weight: 400;
+	border-radius: $btn-border-radius;
+}
+
+@each $color, $value in $theme-colors {
+	.btn-#{$color} {
+		border-color: $value;
+		background-color: $value;
+		color: $white;
+		&:hover {
+			border-color: darken($value, 10%);
+			background-color: darken($value, 10%);
+		}
+	}
+}
+
+.btn-icon {
+	color: $btn-icon-color;
+	&:hover {
+		color: $btn-icon-hover-color;
+	}
+}

@@ -1,0 +1,51 @@
+// color
+$white: #fff;
+$gray: #ced4da;
+$black: #000;
+
+$primary: #4f46e5;
+$secondary: #6c757d;
+$theme-colors: (
+	'primary': $primary,
+	'secondary': $secondary,
+);
+// style
+$border-radius: 1rem;
+$border-radius-sm: 0.25rem;
+
+// breakpoints
+
+$max-width-xl: 1200px;
+$max-width-lg: 992px;
+$max-width-md: 768px;
+$max-width-sm: 576px;
+
+$grid-breakpoints: (
+	xl: $max-width-xl,
+	lg: $max-width-lg,
+	md: $max-width-md,
+	sm: $max-width-sm,
+);
+
+// grid
+
+$gutter-width: 16px;
+$grid-num: 12;
+$spacer: 1rem;
+$gutters: (
+	0: 0,
+	1: $spacer * 0.25,
+	2: $spacer * 0.5,
+	3: $spacer,
+	4: $spacer * 1.5,
+	5: $spacer * 3,
+);
+
+// table
+$table-border-color: lighten($gray, 10%);
+$table-color: lighten($black, 50%);
+
+// button
+$btn-border-radius: $border-radius-sm;
+$btn-icon-color: lighten($black, 45%);
+$btn-icon-hover-color: lighten($black, 20%);

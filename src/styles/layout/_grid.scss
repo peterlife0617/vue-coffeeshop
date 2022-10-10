@@ -1,0 +1,115 @@
+@use 'sass:math';
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: (0 - $gutter-width * 0.5);
+	margin-right: (0 - $gutter-width * 0.5);
+}
+
+%no-gutter {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: (0 - $gutter-width * 0.5);
+	margin-right: (0 - $gutter-width * 0.5);
+}
+
+%no-gutter {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.no-gutter {
+	margin: 0;
+	padding: 0;
+	.col-auto {
+		@extend %no-gutter;
+	}
+
+	@each $infix, $value in $grid-breakpoints {
+		@for $i from 1 through $grid-num {
+			.col-#{$infix}-auto {
+				@extend %no-gutter;
+			}
+		}
+	}
+
+	@for $i from 1 through $grid-num {
+		.col-#{$i} {
+			@extend %no-gutter;
+		}
+	}
+
+	@each $infix, $value in $grid-breakpoints {
+		@for $i from 1 through $grid-num {
+			.col-#{$infix}-#{$i} {
+				@extend %no-gutter;
+			}
+		}
+	}
+}
+%col {
+	padding: 0 ($gutter-width * 0.5);
+	width: 100%;
+}
+
+@for $i from 1 through $grid-num {
+	.col-#{$i} {
+		@extend %col;
+		max-width: 100% * math.div($i, $grid-num);
+		flex: 0 0 (100% * math.div($i, $grid-num));
+	}
+}
+.col {
+	@extend %col;
+	flex: 1 0 0%;
+	max-width: 100%;
+	width: 100%;
+}
+.col-auto {
+	@extend %col;
+	flex: 0 0 auto;
+	width: auto;
+}
+
+@each $infix, $value in $grid-breakpoints {
+	.col-#{$infix} {
+		max-width: 100%;
+		width: 100%;
+		flex: 0 0 100%;
+	}
+	@media (min-width: $value) {
+		@for $i from 1 through $grid-num {
+			.col-#{$infix}-#{$i} {
+				max-width: 100% * math.div($i, $grid-num);
+				flex: 0 0 (100% * math.div($i, $grid-num));
+			}
+		}
+		.col-#{$infix} {
+			flex: 1 0 0%;
+		}
+	}
+}
+
+@each $infix, $value in $grid-breakpoints {
+	@media (min-width: $value) {
+		.col-#{$infix}-auto {
+			flex: 0 0 auto;
+			max-width: auto;
+			width: auto;
+		}
+		@for $index from 0 through 6 {
+			.order-#{$infix}-#{$index} {
+				order: $index;
+			}
+		}
+	}
+}

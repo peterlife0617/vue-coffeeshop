@@ -1,0 +1,14 @@
+@import './layout/grid';
+
+.container {
+	max-width: 1200px;
+	padding-left: calc($gutter-width * 0.5);
+	padding-right: calc($gutter-width * 0.5);
+	margin-left: auto;
+	margin-right: auto;
+}
+.container-fluid {
+	max-width: 100%;
+	padding-left: calc($gutter-width * 0.5);
+	padding-right: calc($gutter-width * 0.5);
+}

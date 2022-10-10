@@ -1,0 +1,50 @@
+.table {
+	text-indent: 0;
+	border-color: inherit;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: left;
+	color: $black;
+	line-height: 1;
+	font-weight: 400;
+	th,
+	td {
+		padding: 1rem 1.5rem;
+	}
+	thead {
+		border-bottom: 1px solid $table-border-color;
+		th {
+			font-weight: 500;
+		}
+	}
+	tbody {
+		tr {
+			border-bottom: 1px solid $table-border-color;
+		}
+		td {
+			color: $table-color;
+		}
+	}
+}
+
+@media (max-width: $max-width-md) {
+	.table-rwd {
+		thead {
+			display: none;
+		}
+		tbody {
+			td {
+				display: flex;
+				&::before {
+					content: attr(data-th);
+					display: block;
+					width: 80px;
+					text-align: right;
+					margin-right: 1.5rem;
+					font-weight: 500;
+					color: $black;
+				}
+			}
+		}
+	}
+}

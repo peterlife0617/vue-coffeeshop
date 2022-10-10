@@ -1,0 +1,20 @@
+.text-right {
+	text-align: right;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.align-items-baseline {
+	align-items: baseline;
+}
+
+//custom margin size
+@each $key, $size in $gutters {
+	@include make-margin-space($key, $size);
+}
+//custom margin size
+@each $key, $size in $gutters {
+	@include make-padding-space($key, $size);
+}

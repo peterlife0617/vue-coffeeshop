@@ -1,13 +1,21 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-import App from './App.vue'
-import router from './router'
+import App from "./App.vue";
+import router from "./router";
 
+import "./styles/main.scss";
 
-const app = createApp(App)
+// fontawesome-free
+import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+import '@fortawesome/fontawesome-free/scss/brands.scss';
+import '@fortawesome/fontawesome-free/scss/regular.scss';
+import '@fortawesome/fontawesome-free/scss/solid.scss';
+import '@fortawesome/fontawesome-free/scss/v4-shims.scss'
 
-app.use(createPinia())
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+app.use(createPinia());
+app.use(router);
+
+app.mount("#app");
