@@ -10,6 +10,7 @@
 	th,
 	td {
 		padding: 1rem 1.5rem;
+		text-align: center;
 	}
 	thead {
 		border-bottom: 1px solid $table-border-color;
@@ -23,6 +24,7 @@
 		}
 		td {
 			color: $table-color;
+			word-break: break-all;
 		}
 	}
 }
@@ -43,6 +45,7 @@
 					margin-right: 1.5rem;
 					font-weight: 500;
 					color: $black;
+					flex-shrink: 0;
 				}
 			}
 		}

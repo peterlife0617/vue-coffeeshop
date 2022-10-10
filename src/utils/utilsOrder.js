@@ -33,7 +33,6 @@ export const updateOrder = (id, detail) => {
 export const deleteOrder = (id) => {
   const orderList = JSON.parse(localStorage.getItem("order-list") ?? "[]");
   const deleteIndex = orderList.findIndex((item) => item.id === id);
-  console.log(id)
   if (deleteIndex > -1) {
     orderList.splice(deleteIndex, 1);
   }

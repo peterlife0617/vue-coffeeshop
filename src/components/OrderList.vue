@@ -3,6 +3,7 @@ import { ref } from "vue";
 import ModalPopup from "@/components/ModalPopup.vue";
 import { useAlertStore } from "@/stores/alert.js";
 import { getOrders, updateOrder, deleteOrder } from "@/utils/utilsOrder.js";
+import { stringify } from "postcss";
 
 const list = ref(getOrders());
 const isShowDetail = ref(false);
@@ -29,7 +30,7 @@ const addData = () => {
   showDetail();
 };
 const editData = (data) => {
-  detail.value = {...data};
+  detail.value = { ...data };
   showDetail();
 };
 
@@ -44,11 +45,17 @@ const save = () => {
 const alertStore = useAlertStore();
 const deleteData = (id) => {
   alertStore.showAlert(true, "是否刪除此訂單?", () => {
-    console.log("123");
     deleteOrder(id);
     list.value = getOrders();
     showDetail(false);
   });
+};
+
+const sizeConvert = (size) => {
+  return size.toUpperCase();
+};
+const moneyConvert = (money) => {
+  return String(money).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 </script>
 
@@ -63,20 +70,23 @@ const deleteData = (id) => {
     <table class="table table-rwd">
       <thead>
         <tr>
-          <th width="1%"></th>
+          <th width="80"></th>
           <th>品項</th>
           <th>價格</th>
           <th>L/M/S</th>
-          <th>備註</th>
-          <th width="160" class="text-center"></th>
+          <th width="200">備註</th>
+          <th width="130" class="text-center"></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in list" :key="item.id">
           <td v-text="index + 1" data-th=""></td>
           <td v-text="item.name" data-th="品項"></td>
-          <td v-text="item.price" data-th="價格"></td>
-          <td v-text="item.size" data-th="L/M/S"></td>
+          <td
+            v-text="moneyConvert(item.price)"
+            data-th="價格"
+          ></td>
+          <td v-text="sizeConvert(item.size)" data-th="L/M/S"></td>
           <td v-text="item.notes" data-th="備註"></td>
           <td data-th="">
             <button class="btn btn-icon" title="編輯" @click="editData(item)">

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch, toRefs } from "vue";
+import { ref, onMounted, watch, toRefs, nextTick } from "vue";
 const props = defineProps({
   modelValue: {
     type: Boolean,
@@ -25,19 +25,21 @@ onMounted(() => {
 watch(
   modelValue,
   (newVal) => {
-    const body = document.querySelector("body");
-    let hasExistShow = false;
-    [...document.querySelectorAll(".modal")].forEach((modal) => {
-      if (modal.style.display === "none") {
-        hasExistShow = true;
+    nextTick(() => {
+      const body = document.querySelector("body");
+      let hasExistShow = false;
+      [...document.querySelectorAll(".modal")].forEach((modal) => {
+        if (modal.style.display !== "none") {
+          hasExistShow = true;
+        }
+      });
+
+      if (!newVal && !hasExistShow) {
+        body.style.overflow = "auto";
+      } else {
+        body.style.overflow = "hidden";
       }
     });
-
-    if (!newVal && !hasExistShow) {
-      body.style.overflow = "auto";
-    } else {
-      body.style.overflow = "hidden";
-    }
   },
   {
     immediate: true,
@@ -47,13 +49,15 @@ watch(
 
 <template>
   <div class="modal" ref="modal" v-show="modelValue">
-    <div class="modal-content">
-      <button class="btn btn-icon btn-close" @click="hideModal">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <div class="modal-body"><slot :hide-modal="hideModal"></slot></div>
-      <div class="modal-footer">
-        <slot name="footer" :hide-modal="hideModal"></slot>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button class="btn btn-icon btn-close" @click="hideModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-body"><slot :hide-modal="hideModal"></slot></div>
+        <div class="modal-footer">
+          <slot name="footer" :hide-modal="hideModal"></slot>
+        </div>
       </div>
     </div>
   </div>
