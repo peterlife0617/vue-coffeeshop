@@ -99,7 +99,7 @@ const deleteData = (id) => {
   </div>
   <ModalPopup v-model="isShowDetail">
     <div>
-      <h2 class="modal-title">新增</h2>
+      <h2 class="modal-title">{{ detail.id ? "編輯" : "新增" }}</h2>
       <form @submit.prevent="save">
         <div class="mb-4">
           <div class="row mb-2">
